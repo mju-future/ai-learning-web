@@ -6,7 +6,7 @@ import InputField from '@/components/common/input-field'
 
 export default function Login() {
   const [loginData, setLoginData] = useState<LoginData>({
-    studentNumber: '',
+    studentId: '',
     password: '',
   })
 
@@ -23,12 +23,12 @@ export default function Login() {
   }
 
   return (
-    <form className="mb-20 flex flex-col gap-6" onSubmit={handleSubmit}>
+    <form className="mb-32 flex flex-col gap-6" onSubmit={handleSubmit}>
       <InputField
         label="학번"
         type="text"
-        name="studentNumber"
-        value={loginData.studentNumber}
+        name="studentId"
+        value={loginData.studentId}
         onChange={handleChange}
       />
       <InputField
