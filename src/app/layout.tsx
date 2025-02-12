@@ -3,7 +3,10 @@ import localFont from 'next/font/local'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: '미래융합대학 기초 학습',
+  title: {
+    template: '%s | 미래융합대학 기초 학습',
+    default: '미래융합대학 기초 학습',
+  },
   description: '명지대학교 미래융합대학 기초 학습',
 }
 
