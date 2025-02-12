@@ -1,14 +1,27 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+const navItems = [
+  { path: '/english-words', label: '영어 단어' },
+  { path: '/writing', label: '글쓰기' },
+];
 
 export default function MemberNav() {
+  const pathname = usePathname();
+
   return (
     <>
-      <Link href={'/english-words'} className="p-2 transition-colors hover:text-neutral-800">
-        영어 단어
-      </Link>
-      <Link href={'/writing'} className="p-2 transition-colors hover:text-neutral-800">
-        글쓰기
-      </Link>
+      {navItems.map(({ path, label }) => (
+        <Link
+          key={path}
+          href={path}
+          className={`${pathname === path ? 'font-medium text-violet-600' : 'transition-colors hover:text-neutral-800'} p-2`}
+        >
+          {label}
+        </Link>
+      ))}
     </>
   );
 }

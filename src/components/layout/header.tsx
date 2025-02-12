@@ -6,7 +6,7 @@ import MemberNav from './member-nav';
 import NonMemberNav from './non-member-nav';
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
 
   return (
     <header className="fixed z-10 flex w-full justify-center border-b bg-slate-50 py-2">
