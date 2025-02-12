@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import Header from '@/components/layout/header'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -25,9 +26,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${pretendard.className} flex min-h-screen w-full justify-center text-lg tracking-tight antialiased`}
+        className={`${pretendard.className} flex min-h-screen w-full justify-center overflow-y-scroll text-lg tracking-tight text-neutral-800 antialiased`}
       >
-        {children}
+        <Header />
+        <div className="mt-[61px] flex w-full max-w-screen-lg justify-center">{children}</div>
       </body>
     </html>
   )
