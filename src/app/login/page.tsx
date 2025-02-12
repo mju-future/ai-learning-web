@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import { ChangeEvent, FormEvent, useState } from 'react'
-import { LoginData } from '@/types'
-import InputField from '@/components/common/input-field'
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { LoginData } from '@/types';
+import InputField from '@/components/common/input-field';
 
 export default function Login() {
   const [loginData, setLoginData] = useState<LoginData>({
     studentId: '',
     password: '',
-  })
+  });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setLoginData((prev) => ({
       ...prev,
       [name]: value,
-    }))
+    }));
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+    e.preventDefault();
   }
 
   return (
@@ -42,5 +42,5 @@ export default function Login() {
         로그인하기
       </button>
     </form>
-  )
+  );
 }

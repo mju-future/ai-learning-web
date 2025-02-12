@@ -1,8 +1,8 @@
-import { Metadata } from 'next'
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: '로그인',
-}
+};
 
 export default function Login({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -10,5 +10,5 @@ export default function Login({ children }: Readonly<{ children: React.ReactNode
       <h1 className="text-4xl font-bold">로그인</h1>
       {children}
     </div>
-  )
+  );
 }

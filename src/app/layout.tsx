@@ -1,7 +1,7 @@
-import type { Metadata } from 'next'
-import localFont from 'next/font/local'
-import Header from '@/components/layout/header'
-import './globals.css'
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import Header from '@/components/layout/header';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: {
@@ -9,19 +9,19 @@ export const metadata: Metadata = {
     default: '미래융합대학 기초 학습',
   },
   description: '명지대학교 미래융합대학 기초 학습',
-}
+};
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
   display: 'swap',
   weight: '45 920',
   variable: '--font-pretendard',
-})
+});
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="ko">
@@ -32,5 +32,5 @@ export default function RootLayout({
         <div className="mt-[61px] flex w-full max-w-screen-lg justify-center">{children}</div>
       </body>
     </html>
-  )
+  );
 }

@@ -1,1 +1,1 @@
-declare module 'tailwind-corner-smoothing'
+declare module 'tailwind-corner-smoothing';

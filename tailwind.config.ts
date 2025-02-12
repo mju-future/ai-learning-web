@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss'
-import tailwindCornerSmoothing from 'tailwind-corner-smoothing'
+import type { Config } from 'tailwindcss';
+import tailwindCornerSmoothing from 'tailwind-corner-smoothing';
 
 export default {
   content: [
@@ -11,4 +11,4 @@ export default {
     extend: {},
   },
   plugins: [tailwindCornerSmoothing],
-} satisfies Config
+} satisfies Config;

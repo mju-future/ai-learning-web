@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes } from 'react';
 
 export default function Input({ className, ...others }: InputHTMLAttributes<HTMLInputElement>) {
   return (
@@ -6,5 +6,5 @@ export default function Input({ className, ...others }: InputHTMLAttributes<HTML
       className={`${className} border px-3.5 py-2.5 outline-none transition-colors focus:bg-slate-50`}
       {...others}
     />
-  )
+  );
 }
