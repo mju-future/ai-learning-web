@@ -38,7 +38,7 @@ export default function Login() {
         value={loginData.password}
         onChange={handleChange}
       />
-      <button className="mt-10 bg-indigo-600 py-3.5 font-semibold text-white outline-none transition-colors hover:bg-indigo-700 focus:bg-indigo-700">
+      <button className="mt-10 bg-violet-600 py-3.5 font-semibold text-white outline-none transition-colors hover:bg-violet-800 focus:bg-violet-800">
         로그인하기
       </button>
     </form>
