@@ -88,7 +88,7 @@ function WeeklyCalendar() {
               className={`flex flex-col items-center border py-3 ${hasStudied ? 'bg-green-100' : 'bg-slate-50'} ${index === 0 && 'text-red-500'} ${index === 6 && 'text-blue-500'}`}
             >
               <div className="text-base">{date.getDate()}</div>
-              <div className="mt-2 h-full max-h-10 w-full max-w-10">
+              <div className="mt-2 h-10 w-10">
                 {hasStudied && <CgCheck className="h-full w-full text-green-500" />}
               </div>
             </div>
