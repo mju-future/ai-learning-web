@@ -26,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${pretendard.className} flex min-h-screen w-full justify-center overflow-y-scroll text-lg tracking-tight text-neutral-800 antialiased`}
+        className={`${pretendard.className} flex min-h-screen w-full justify-center overflow-y-scroll tracking-tight text-neutral-800 antialiased`}
       >
         <Header />
-        <div className="mt-[61px] flex w-full max-w-screen-lg justify-center">{children}</div>
+        <div className="mt-[61px] flex w-full max-w-screen-lg justify-center px-6 text-lg">
+          {children}
+        </div>
       </body>
     </html>
   );
