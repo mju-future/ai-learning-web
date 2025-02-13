@@ -11,6 +11,8 @@ const navItems = [
 export default function MemberNav() {
   const pathname = usePathname();
 
+  function handleLogout() {}
+
   return (
     <>
       {navItems.map(({ path, label }) => (
@@ -22,6 +24,9 @@ export default function MemberNav() {
           {label}
         </Link>
       ))}
+      <button className="p-2 transition-colors hover:text-neutral-800" onClick={handleLogout}>
+        로그아웃
+      </button>
     </>
   );
 }
