@@ -51,7 +51,7 @@ export default function WritingList() {
         {dummyList.map((item, index) => (
           <li
             key={index}
-            className="flex cursor-pointer justify-between px-5 py-6 transition-colors hover:bg-neutral-100"
+            className="flex cursor-pointer justify-between px-4 py-6 transition-colors hover:bg-neutral-100"
           >
             <Link href={`/writing/${index}`}>{item.title}</Link>
             <span className="text-neutral-500">{item.date}</span>
