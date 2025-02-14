@@ -19,7 +19,7 @@ export default function MemberNav() {
         <Link
           key={path}
           href={path}
-          className={`${pathname === path ? 'font-medium text-violet-600' : 'transition-colors hover:text-neutral-800'} p-2`}
+          className={`${pathname === path ? 'font-semibold text-violet-600' : 'transition-colors hover:text-neutral-800'} p-2`}
         >
           {label}
         </Link>
