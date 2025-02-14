@@ -3,5 +3,5 @@ export default function WritingNewLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="mb-12 flex w-full flex-col">{children}</main>;
+  return <main className="flex w-full flex-col">{children}</main>;
 }

@@ -42,7 +42,7 @@ export default function WritingList() {
       <div className="mt-4 flex w-full justify-end">
         <Link
           href={'/writing/new'}
-          className="bg-violet-100 px-4 py-2 font-semibold text-violet-600 transition-colors hover:bg-violet-200"
+          className="bg-violet-100 px-4 py-2 font-semibold text-violet-600 outline-none transition-colors hover:bg-violet-200"
         >
           AI 피드백 받기
         </Link>
