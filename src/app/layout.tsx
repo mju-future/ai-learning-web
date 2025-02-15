@@ -29,7 +29,9 @@ export default function RootLayout({
         className={`${pretendard.className} flex min-h-screen w-full justify-center overflow-y-scroll text-lg tracking-tight text-neutral-800 antialiased`}
       >
         <Header />
-        <div className="mt-[61px] flex w-full max-w-screen-lg justify-center px-6">{children}</div>
+        <div className="mb-12 mt-[61px] flex w-full max-w-screen-lg justify-center px-6">
+          {children}
+        </div>
       </body>
     </html>
   );

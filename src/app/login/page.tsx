@@ -23,7 +23,7 @@ export default function Login() {
   }
 
   return (
-    <form className="mb-32 flex flex-col gap-6" onSubmit={handleSubmit}>
+    <form className="mb-20 flex flex-col gap-6" onSubmit={handleSubmit}>
       <InputField
         label="아이디"
         type="text"

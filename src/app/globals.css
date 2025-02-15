@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+textarea {
+  scrollbar-color: #8888 transparent;
+  scrollbar-width: auto;
+}
