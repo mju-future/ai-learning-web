@@ -1,70 +1,41 @@
-import { RiRobot2Line } from 'react-icons/ri';
+import AiResponse from '@/components/writing-practice/ai-response';
+import UserInput from '@/components/writing-practice/user-input';
+import UserRequest from '@/components/writing-practice/user-request';
+
+const dummy = [
+  {
+    id: 1,
+    type: 'USER',
+    text: '안녕하세요. 오늘 날씨가 어떤가요?',
+  },
+  {
+    id: 2,
+    type: 'AI',
+    text: '안녕하세요. 오늘 날씨는 맑습니다.',
+  },
+  {
+    id: 3,
+    type: 'USER',
+    text: '오늘은 무슨 일정이 있나요?',
+  },
+  {
+    id: 4,
+    type: 'AI',
+    text: '오늘은 회의가 있습니다.',
+  },
+];
 
 export default function WritingPractice() {
   return (
     <>
-      <div className="py-12">
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-      </div>
-      <div className="border-b pb-10">
-        <div className="mb-4">
-          <RiRobot2Line className="mb-1 h-7 w-7 text-violet-600 drop-shadow-sm" />
-          <h3 className="text-2xl font-semibold">AI 답변</h3>
-        </div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-      </div>
-      <div className="py-12">
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-      </div>
-      <div className="border-b pb-10">
-        <div className="mb-4">
-          <RiRobot2Line className="mb-2 h-7 w-7 text-violet-600 drop-shadow-sm" />
-          <h3 className="text-2xl font-semibold">AI 답변</h3>
-        </div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-        <div>안녕하세요... 어쩌구저쩌구......</div>
-      </div>
-      <div className="mt-10 w-full border bg-neutral-50">
-        <textarea
-          className="mt-3 w-full resize-none bg-neutral-50 px-4 outline-none"
-          rows={5}
-          spellCheck={false}
-          autoFocus={true}
-          autoCorrect="off"
-        />
-        <div className="flex w-full justify-end">
-          <button className="px-4 pb-2 pt-1 font-semibold text-violet-600 transition-opacity hover:opacity-50">
-            전송
-          </button>
-        </div>
-      </div>
+      {dummy.map((item) =>
+        item.type === 'USER' ? (
+          <UserRequest key={item.id} text={item.text} />
+        ) : (
+          <AiResponse key={item.id} text={item.text} />
+        )
+      )}
+      <UserInput />
     </>
   );
 }
