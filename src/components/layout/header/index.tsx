@@ -1,12 +1,10 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
+import { cookies } from 'next/headers';
 import MemberNav from './member-nav';
-import NonMemberNav from './non-member-nav';
 
-export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+export default async function Header() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('access_token');
 
   return (
     <header className="fixed z-10 flex w-full justify-center border-b bg-neutral-50 py-2">
@@ -14,9 +12,7 @@ export default function Header() {
         <Link href={'/'} className="py-2 pr-2 font-medium">
           미래융합대학 기초 학습
         </Link>
-        <nav className="flex gap-4 text-neutral-500">
-          {isLoggedIn ? <MemberNav /> : <NonMemberNav />}
-        </nav>
+        <nav className="flex gap-4 text-neutral-500">{token && <MemberNav />}</nav>
       </div>
     </header>
   );
