@@ -1,11 +1,12 @@
 'use client';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { LoginData } from '@/types';
+import { LoginRequest } from '@/types';
 import InputField from '@/components/common/input-field';
+import { login } from '@/api';
 
 export default function Login() {
-  const [loginData, setLoginData] = useState<LoginData>({
+  const [loginData, setLoginData] = useState<LoginRequest>({
     loginId: '',
     password: '',
   });
@@ -20,6 +21,8 @@ export default function Login() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const response = await login(loginData);
+    console.log(response);
   }
 
   return (
