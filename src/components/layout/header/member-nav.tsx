@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { logout } from '@/app/actions/auth';
 
 const navItems = [
   { path: '/english-words', label: '영어 단어' },
@@ -10,8 +11,13 @@ const navItems = [
 
 export default function MemberNav() {
   const pathname = usePathname();
+  const router = useRouter();
 
-  function handleLogout() {}
+  async function handleLogout() {
+    await logout();
+    router.push('/login');
+    router.refresh();
+  }
 
   return (
     <>
