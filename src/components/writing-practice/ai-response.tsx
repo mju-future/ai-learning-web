@@ -1,6 +1,6 @@
 import { RiRobot2Line } from 'react-icons/ri';
 
-export default function AiResponse({ text }: { text: string }) {
+export default function AiChat({ text }: { text: string }) {
   return (
     <div className="border-b pb-10">
       <div className="mb-4">

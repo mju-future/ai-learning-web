@@ -4,7 +4,7 @@ import MemberNav from './member-nav';
 
 export default async function Header() {
   const cookieStore = await cookies();
-  const token = cookieStore.get('access_token');
+  const token = cookieStore.get('ACCESS_TOKEN');
 
   return (
     <header className="fixed z-10 flex w-full justify-center border-b bg-neutral-50 py-2">

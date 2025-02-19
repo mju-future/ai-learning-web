@@ -1,13 +1,27 @@
 'use client';
 
+import { askFeedback } from '@/api';
+import { getCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
+import FeedbackLoading from '@/components/writing-practice/feedback-loading';
 
 export default function WritingNew() {
-  const [text, setText] = useState('');
+  const router = useRouter();
+  const [content, setContent] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setText(event.target.value);
+  async function handleOnClick() {
+    // if (content.length < 50) {
+    //   return;
+    // }
+
+    setIsLoading(true);
+    const token = getCookie('ACCESS_TOKEN') as string;
+    const data = await askFeedback(token, content);
+    router.push(`/writing/${data.id}`);
+    setIsLoading(false);
   }
 
   return (
@@ -22,14 +36,18 @@ export default function WritingNew() {
           spellCheck={false}
           minRows={12}
           maxLength={3000}
-          value={text}
-          onChange={handleChange}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         />
-        <div className="text-right">{text.length}/3000자</div>
+        <div className="text-right">{content.length}/3000자</div>
       </div>
-      <button className="mt-5 bg-violet-100 py-3 font-semibold text-violet-600 outline-none transition-colors hover:bg-violet-200">
+      <button
+        className="mt-5 bg-violet-100 py-3 font-semibold text-violet-600 outline-none transition-colors hover:bg-violet-200"
+        onClick={handleOnClick}
+      >
         AI 피드백 받기
       </button>
+      {isLoading && <FeedbackLoading />}
     </>
   );
 }
