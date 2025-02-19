@@ -13,9 +13,9 @@ export default function WritingNew() {
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleOnClick() {
-    // if (content.length < 50) {
-    //   return;
-    // }
+    if (content.length < 50) {
+      return;
+    }
 
     setIsLoading(true);
     const token = getCookie('ACCESS_TOKEN') as string;
@@ -23,6 +23,8 @@ export default function WritingNew() {
     router.push(`/writing/${data.id}`);
     setIsLoading(false);
   }
+
+  const isButtonDisabled = isLoading || content.length < 1;
 
   return (
     <>
@@ -42,8 +44,9 @@ export default function WritingNew() {
         <div className="text-right">{content.length}/3000자</div>
       </div>
       <button
-        className="mt-5 bg-violet-100 py-3 font-semibold text-violet-600 outline-none transition-colors hover:bg-violet-200"
+        className={`mt-5 bg-violet-100 py-3 font-semibold text-violet-600 outline-none transition-all ${isButtonDisabled ? 'opacity-50' : 'hover:bg-violet-200'}`}
         onClick={handleOnClick}
+        disabled={isButtonDisabled}
       >
         AI 피드백 받기
       </button>
