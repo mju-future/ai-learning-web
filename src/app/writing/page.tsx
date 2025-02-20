@@ -1,51 +1,11 @@
 import Link from 'next/link';
+import { fetchWritingPractices } from '@/api';
+import { cookies } from 'next/headers';
 
-const dummy = [
-  {
-    id: 1,
-    date: '2025.02.15',
-    title:
-      '스스로 문제를 정의하고 해결하는 소프트웨어 엔지니어입니다. 학교생활 중 직접 경험한 불편함을 어쩌구 저쩌구 해결하기 위해',
-  },
-  {
-    id: 2,
-    date: '2025.02.14',
-    title:
-      '스스로 문제를 정의하고 해결하는 소프트웨어 엔지니어입니다. 학교생활 중 직접 경험한 불편함을 어쩌구 저쩌구 해결하기 위해',
-  },
-  {
-    id: 3,
-    date: '2025.02.14',
-    title:
-      ' 소프트웨어 엔지니어입니다. 학교생활 중 직접 경험한 어쩌구 저쩌구 해결하기 위해 어쩌구 저쩌구',
-  },
-  {
-    id: 4,
-    date: '2025.02.14',
-    title:
-      ' 소프트웨어 엔지니어입니다. 학교생활 중 직접 경험한 불편함을 어쩌구 저쩌구 해결하기 위해',
-  },
-  {
-    id: 5,
-    date: '2025.02.13',
-    title:
-      '스스로 문제를 정의하고 해결하는 소프트웨어 엔지니어입니다. 학교생활 중 직접 경험한 불편함을 개선하기 어쩌구 저쩌구 어어어쩌구 저쩌구',
-  },
-  {
-    id: 6,
-    date: '2025.02.13',
-    title:
-      '스스로 문제를 정의하고 해결하는 소프트웨어 엔지니어입니다. 학교생활 중 직접 어쩌구 저쩌구 어어어쩌구 저쩌구',
-  },
-  {
-    id: 7,
-    date: '2025.02.12',
-    title:
-      '스스로 문제를 정의하고 해결하는 소프트웨어 엔지니어입니다. 학교생활 중 직접 어쩌구 저쩌구 해결하기 위해',
-  },
-];
+export default async function WritingList() {
+  const token = (await cookies()).get('ACCESS_TOKEN')!.value;
+  const writingPractices = await fetchWritingPractices(token);
 
-export default function WritingList() {
   return (
     <>
       <h1 className="mt-12 text-3xl font-bold">글쓰기 연습하기</h1>
@@ -58,7 +18,7 @@ export default function WritingList() {
         </Link>
       </div>
       <ul className="mt-10 flex flex-col">
-        {dummy.map(({ id, title, date }) => (
+        {writingPractices.map(({ id, title, date }) => (
           <li key={id}>
             <Link
               href={`/writing/${id}`}

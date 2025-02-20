@@ -1,4 +1,4 @@
-export default function UserRequest({ text }: { text: string }) {
+export default function MemberChat({ text }: { text: string }) {
   return (
     <div className="py-12">
       <p>{text}</p>

@@ -2,10 +2,20 @@
 
 import { useState } from 'react';
 
-export default function UserInput() {
+interface UserInputProps {
+  onSendMessage: (content: string) => void;
+  isLoading: boolean;
+}
+
+export default function UserInput({ onSendMessage, isLoading }: UserInputProps) {
   const [input, setInput] = useState('');
 
-  function handleClickSubmit() {}
+  function handleSubmit() {
+    if (!input.trim()) return;
+
+    onSendMessage(input);
+    setInput('');
+  }
 
   return (
     <div className="mt-10 w-full border bg-neutral-50">
@@ -20,8 +30,9 @@ export default function UserInput() {
       />
       <div className="flex w-full justify-end">
         <button
-          className="px-4 pb-2 pt-1 font-semibold text-violet-600 transition-opacity hover:opacity-50"
-          onClick={handleClickSubmit}
+          className={`px-4 pb-2 pt-1 font-semibold text-violet-600 transition-opacity hover:opacity-50 ${isLoading && 'cursor-not-allowed opacity-50'}`}
+          onClick={handleSubmit}
+          disabled={isLoading}
         >
           전송
         </button>

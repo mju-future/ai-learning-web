@@ -1,14 +1,17 @@
 'use client';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { LoginData } from '@/types';
+import { useRouter } from 'next/navigation';
+import { LoginRequest } from '@/types';
 import InputField from '@/components/common/input-field';
+import { login } from '@/api';
 
 export default function Login() {
-  const [loginData, setLoginData] = useState<LoginData>({
+  const [loginData, setLoginData] = useState<LoginRequest>({
     loginId: '',
     password: '',
   });
+  const router = useRouter();
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -20,6 +23,9 @@ export default function Login() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    await login(loginData);
+    router.push('/');
+    router.refresh();
   }
 
   return (
