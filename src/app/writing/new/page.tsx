@@ -32,7 +32,7 @@ export default function WritingNew() {
       <div className="mt-10 w-full">
         <TextareaAutosize
           className="w-full resize-none border px-4 py-3 outline-none"
-          placeholder="글을 작성해 주세요."
+          placeholder="글을 작성해 주세요"
           autoComplete="off"
           autoFocus={true}
           spellCheck={false}

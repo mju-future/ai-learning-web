@@ -9,7 +9,7 @@ export default async function Writing() {
   return (
     <>
       <h1 className="mt-12 text-3xl font-bold">글쓰기 연습하기</h1>
-      <p className="mt-4 text-neutral-500">글을 작성하면 AI가 피드백을 해줘요.</p>
+      <p className="mt-4 text-neutral-500">글을 작성하면 AI가 피드백을 해줘요</p>
       <div className="mt-2 flex w-full justify-end">
         <Link
           href={'/writing/new'}

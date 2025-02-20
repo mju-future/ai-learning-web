@@ -4,7 +4,7 @@ export default function English() {
   return (
     <>
       <h1 className="mt-12 text-3xl font-bold">영어 학습하기</h1>
-      <p className="mt-4 text-neutral-500">AI와 함께 영어 단어 및 문법을 학습해요.</p>
+      <p className="mt-4 text-neutral-500">AI와 함께 영어 단어 및 문법을 학습해요</p>
       <div className="mt-10 flex w-full flex-col gap-5">
         <div className="w-full border p-6">
           <h2 className="text-xl font-semibold">AI 단어 검색</h2>
