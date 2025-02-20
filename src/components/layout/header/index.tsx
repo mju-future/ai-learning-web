@@ -12,7 +12,7 @@ export default async function Header() {
         <Link href={'/'} className="py-2 pr-2 font-medium">
           미래융합대학 기초 학습
         </Link>
-        <nav className="flex gap-4 text-neutral-500">{token && <MemberNav />}</nav>
+        <nav className="flex gap-5 text-neutral-500">{token && <MemberNav />}</nav>
       </div>
     </header>
   );
