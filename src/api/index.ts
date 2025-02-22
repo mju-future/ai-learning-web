@@ -18,7 +18,7 @@ export async function login(loginData: LoginRequest) {
 }
 
 export async function fetchWritingPractices(token: string): Promise<WritingPractice[]> {
-  const response = await fetch(`${BASE_URL}/writing-practices`, {
+  const response = await fetch(`${BASE_URL}/writings`, {
     method: 'GET',
     headers: {
       Cookie: `ACCESS_TOKEN=${token}`,
@@ -34,7 +34,7 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
 }
 
 export async function askFeedback(token: string, content: string): Promise<AskFeedbackResponse> {
-  const response = await fetch(`${BASE_URL}/writing-practices`, {
+  const response = await fetch(`${BASE_URL}/writings`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export async function fetchWritingPracticeChats(
   id: string,
   token: string
 ): Promise<WritingPracticeChat[]> {
-  const response = await fetch(`${BASE_URL}/writing-practices/${id}/chat`, {
+  const response = await fetch(`${BASE_URL}/writings/${id}/chat`, {
     method: 'GET',
     headers: {
       Cookie: `ACCESS_TOKEN=${token}`,
@@ -77,7 +77,7 @@ export async function chat(
   token: string,
   content: string
 ): Promise<WritingPracticeChat> {
-  const response = await fetch(`${BASE_URL}/writing-practices/${id}/chat`, {
+  const response = await fetch(`${BASE_URL}/writings/${id}/chat`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
