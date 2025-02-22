@@ -34,6 +34,7 @@ export default function WritingPracticeChatList({ id, initialData }: WritingPrac
       lastMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [chats]);
+
   return (
     <>
       {chats.map(({ id, sender, content }, index) => {
