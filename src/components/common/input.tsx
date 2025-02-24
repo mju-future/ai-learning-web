@@ -5,7 +5,7 @@ export default function Input({ className, ...others }: InputHTMLAttributes<HTML
     <input
       autoComplete="off"
       spellCheck={false}
-      className={`${className} border px-3.5 py-2.5 outline-none transition-colors focus:bg-slate-50`}
+      className={`${className} mt-1.5 border px-3.5 py-2.5 outline-none transition-colors focus:bg-neutral-50`}
       {...others}
     />
   );
