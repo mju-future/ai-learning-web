@@ -21,13 +21,13 @@ export default function English() {
             </button>
           </div>
         </div>
-        <div className="w-full border p-6">
-          <h2 className="text-xl font-semibold">퀴즈</h2>
+        <div className="w-full border p-6 font-semibold">
+          <h2 className="text-xl">퀴즈</h2>
           <div className="mt-5 flex gap-4">
-            <button className="w-full bg-violet-100 py-2.5 font-semibold text-violet-600 transition-colors hover:bg-violet-200">
+            <button className="w-full bg-violet-100 py-2.5 text-violet-600 transition-colors hover:bg-violet-200">
               단어 퀴즈
             </button>
-            <button className="w-full bg-violet-100 py-2.5 font-semibold text-violet-600 transition-colors hover:bg-violet-200">
+            <button className="w-full bg-violet-100 py-2.5 text-violet-600 transition-colors hover:bg-violet-200">
               문법 퀴즈
             </button>
           </div>
