@@ -2,12 +2,12 @@
 
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { LoginRequest } from '@/types';
 import InputField from '@/components/common/input-field';
 import { login } from '@/api';
+import { LoginData } from '@/types';
 
 export default function Login() {
-  const [loginData, setLoginData] = useState<LoginRequest>({
+  const [loginData, setLoginData] = useState<LoginData>({
     loginId: '',
     password: '',
   });
