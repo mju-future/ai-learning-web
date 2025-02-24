@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+.ai-response {
+  h3 {
+    display: inline-block;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+  }
+
+  p,
+  li {
+    display: inline-block;
+    line-height: 2rem;
+  }
+}
+
+strong {
+  font-weight: 600;
+}
+
 textarea {
   scrollbar-color: #8888 transparent;
   scrollbar-width: auto;

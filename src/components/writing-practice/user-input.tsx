@@ -30,7 +30,7 @@ export default function UserInput({ onSendMessage, isLoading }: UserInputProps) 
       />
       <div className="flex w-full justify-end">
         <button
-          className={`px-4 pb-2 pt-1 font-semibold text-violet-600 transition-opacity hover:opacity-50 ${isLoading && 'cursor-not-allowed opacity-50'}`}
+          className={`px-4 pb-2.5 pt-1 font-semibold text-violet-600 transition-opacity hover:opacity-50 ${isLoading && 'cursor-not-allowed opacity-50'}`}
           onClick={handleSubmit}
           disabled={isLoading}
         >
