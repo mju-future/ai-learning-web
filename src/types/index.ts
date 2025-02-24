@@ -1,4 +1,4 @@
-export interface LoginRequest {
+export interface LoginData {
   loginId: string;
   password: string;
 }
@@ -15,6 +15,24 @@ export interface WritingPracticeChat {
   content: string;
 }
 
-export interface AskFeedbackResponse {
+export interface AiFeedback {
   id: string;
+}
+
+export const QuizType = {
+  VOCABULARY: '어휘',
+  GRAMMAR: '문법',
+} as const;
+
+export interface Quiz {
+  id: string;
+  question: string;
+  answer: number;
+  options: QuizOption[];
+  explanation: string;
+}
+
+export interface QuizOption {
+  number: number;
+  value: string;
 }

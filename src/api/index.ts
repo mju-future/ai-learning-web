@@ -1,15 +1,23 @@
-import { AskFeedbackResponse, LoginRequest, WritingPractice, WritingPracticeChat } from '@/types';
+import {
+  WritingPractice,
+  WritingPracticeChat,
+  AiFeedback,
+  QuizType,
+  Quiz,
+  LoginData,
+} from '@/types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
 
-export async function login(loginData: LoginRequest) {
+export async function login(loginData: LoginData): Promise<void> {
+  const { loginId, password } = loginData;
   const response = await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify(loginData),
+    body: JSON.stringify({ loginId, password }),
   });
 
   if (!response.ok) {
@@ -33,7 +41,7 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
   return data.body;
 }
 
-export async function askFeedback(token: string, content: string): Promise<AskFeedbackResponse> {
+export async function askFeedback(token: string, content: string): Promise<AiFeedback> {
   const response = await fetch(`${BASE_URL}/writings`, {
     method: 'POST',
     headers: {
@@ -74,8 +82,8 @@ export async function fetchWritingPracticeChats(
 
 export async function chat(
   id: string,
-  token: string,
-  content: string
+  content: string,
+  token: string
 ): Promise<WritingPracticeChat> {
   const response = await fetch(`${BASE_URL}/writings/${id}/chat`, {
     method: 'POST',
@@ -92,5 +100,27 @@ export async function chat(
   }
 
   const data = await response.json();
+  return data.body;
+}
+
+export async function fetchRandomQuizzes(
+  type: keyof typeof QuizType,
+  amount: number,
+  token: string
+): Promise<Quiz[]> {
+  const response = await fetch(`${BASE_URL}/quizzes?type=${type}&amount=${amount}`, {
+    method: 'GET',
+    headers: {
+      Cookie: `ACCESS_TOKEN=${token}`,
+    },
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  const data = await response.json();
+
   return data.body;
 }
