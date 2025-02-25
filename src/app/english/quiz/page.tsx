@@ -4,7 +4,7 @@ import { QuizType } from '@/types';
 import QuizContainer from '@/components/quiz/quiz-container';
 
 interface QuizParams {
-  searchParams: { type: keyof typeof QuizType; amount: number };
+  searchParams: Promise<{ type: keyof typeof QuizType; amount: number }>;
 }
 
 export default async function Quiz({ searchParams }: QuizParams) {
