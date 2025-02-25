@@ -3,9 +3,7 @@ import { fetchWritingPracticeChats } from '@/api';
 import WritingPracticeChatList from '@/components/writing/chat-list';
 
 interface WritingPracticeProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function WritingPractice({ params }: WritingPracticeProps) {
