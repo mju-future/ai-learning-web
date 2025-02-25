@@ -5,7 +5,7 @@ import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import FeedbackLoading from '@/components/writing-practice/feedback-loading';
+import FeedbackLoading from '@/components/writing/feedback-loading';
 
 export default function WritingNew() {
   const router = useRouter();

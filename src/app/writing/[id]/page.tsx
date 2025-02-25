@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { fetchWritingPracticeChats } from '@/api';
-import WritingPracticeChatList from '@/components/writing-practice/chat-list';
+import WritingPracticeChatList from '@/components/writing/chat-list';
 
 interface WritingPracticeProps {
   params: {
