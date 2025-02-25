@@ -1,7 +1,7 @@
 'use client';
 
 import { QuizType } from '@/types';
-import { useState } from 'react';
+import { useReducer } from 'react';
 import Modal from 'react-modal';
 
 interface QuizModalProps {
@@ -11,8 +11,23 @@ interface QuizModalProps {
   onSubmit: (amount: number) => void;
 }
 
+interface AmountAction {
+  type: 'INCREASE' | 'DECREASE';
+}
+
+function amountReducer(state: number, action: AmountAction): number {
+  switch (action.type) {
+    case 'INCREASE':
+      return state + 5 <= 20 ? state + 5 : state;
+    case 'DECREASE':
+      return state - 5 >= 5 ? state - 5 : state;
+    default:
+      return state;
+  }
+}
+
 export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizModalProps) {
-  const [amount, setAmount] = useState(10);
+  const [amount, dispatch] = useReducer(amountReducer, 10);
 
   const handleSubmit = () => {
     onSubmit(amount);
@@ -30,15 +45,29 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
         <h2 className="text-xl font-semibold">{`${QuizType[quizType]} 퀴즈`}</h2>
         <div className="mt-10">
           <label>개수</label>
-          <input
-            type="number"
-            className="mt-1.5 block w-full border px-3.5 py-2.5 outline-none"
-            value={amount}
-            autoFocus={true}
-            onChange={(e) => setAmount(Number(e.target.value))}
-            min={5}
-            max={20}
-          />
+          <div className="mt-1.5 flex w-full border">
+            <input
+              type="number"
+              readOnly={true}
+              onClick={() => {}}
+              className="w-full px-3.5 py-2.5 outline-none"
+              value={amount}
+            />
+            <div className="flex flex-col bg-neutral-100">
+              <button
+                className="h-full px-5 outline-none transition-colors hover:bg-neutral-200"
+                onClick={() => dispatch({ type: 'INCREASE' })}
+              >
+                +
+              </button>
+              <button
+                className="h-full px-5 outline-none transition-colors hover:bg-neutral-200"
+                onClick={() => dispatch({ type: 'DECREASE' })}
+              >
+                -
+              </button>
+            </div>
+          </div>
         </div>
         <div className="mt-10 flex justify-end gap-5 font-semibold">
           <button
