@@ -4,6 +4,7 @@ import { useState, useReducer } from 'react';
 import { Quiz, QuizType } from '@/types';
 import OptionItem from './option-item';
 import QuizNavigation from './quiz-navigation';
+import { useRouter } from 'next/navigation';
 
 interface QuizContainerProps {
   type: keyof typeof QuizType;
@@ -32,14 +33,21 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
   const [selectedNumber, setSelectedNumber] = useState<number[]>(Array(data.length).fill(null));
   const [showExplanation, setShowExplanation] = useState(Array(data.length).fill(false));
   const [count, setCount] = useState(0);
+  const router = useRouter();
 
   const { answer, options, explanation } = data[currentIndex];
+  const isFirst = currentIndex === 0;
+  const isLast = currentIndex === data.length - 1;
 
   function handlePrevious() {
     dispatch({ type: 'PREVIOUS', length: data.length });
   }
 
   function handleNext() {
+    if (isLast) {
+      router.push('/english');
+    }
+
     dispatch({ type: 'NEXT', length: data.length });
     setCount(0);
   }
@@ -90,7 +98,8 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
         ))}
       </div>
       <QuizNavigation
-        isFirst={currentIndex === 0}
+        isFirst={isFirst}
+        isLast={isLast}
         isPassed={isPassed[currentIndex]}
         handlePrevious={handlePrevious}
         handleNext={handleNext}

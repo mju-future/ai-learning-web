@@ -41,7 +41,7 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
       onRequestClose={onClose}
       ariaHideApp={false}
     >
-      <div className="mb-10 w-full max-w-screen-sm border bg-white p-10">
+      <div className="mb-10 w-full max-w-xl border bg-white p-8">
         <h2 className="text-xl font-semibold">{`${QuizType[quizType]} 퀴즈`}</h2>
         <div className="mt-10">
           <label>개수</label>
@@ -50,7 +50,7 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
               type="number"
               readOnly={true}
               onClick={() => {}}
-              className="w-full px-3.5 py-2.5 outline-none"
+              className="w-full px-3 py-2 outline-none"
               value={amount}
             />
             <div className="flex flex-col bg-neutral-100">
@@ -69,7 +69,7 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
             </div>
           </div>
         </div>
-        <div className="mt-10 flex justify-end gap-5 font-semibold">
+        <div className="mt-10 flex justify-end gap-2.5 font-semibold">
           <button
             className="bg-neutral-100 px-4 py-2 text-neutral-600 transition-colors hover:bg-neutral-200"
             onClick={onClose}

@@ -20,7 +20,7 @@ function OptionItem({
   const isAnswered = isPassed;
 
   const buttonClass = [
-    'flex w-full max-w-screen-sm items-center px-3 py-4 transition-colors',
+    'flex w-full max-w-screen-sm items-center px-3 py-3.5 transition-colors',
     isAnswered && isCorrect && 'bg-green-100 bg-opacity-80 font-medium',
     isAnswered && isSelected && !isCorrect && 'bg-red-100 bg-opacity-50 font-medium',
     isAnswered && !isSelected && !isCorrect && 'opacity-50',
@@ -37,7 +37,7 @@ function OptionItem({
       onClick={onClick}
       disabled={isAnswered}
     >
-      <span className="mr-5 inline-block h-8 w-8 content-center font-medium text-violet-600">
+      <span className="mr-3 inline-block h-8 w-8 content-center font-medium text-violet-600">
         {number}.
       </span>
       {value}

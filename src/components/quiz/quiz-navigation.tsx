@@ -2,6 +2,7 @@ import { CgArrowLeft, CgArrowRight } from 'react-icons/cg';
 
 interface QuizNavigationProps {
   isFirst: boolean;
+  isLast: boolean;
   isPassed: boolean;
   handlePrevious: () => void;
   handleNext: () => void;
@@ -9,6 +10,7 @@ interface QuizNavigationProps {
 
 export default function QuizNavigation({
   isFirst,
+  isLast,
   isPassed,
   handlePrevious,
   handleNext,
@@ -16,22 +18,22 @@ export default function QuizNavigation({
   return (
     <div className="flex w-full justify-between">
       <button
-        className={`bg-violet-100 px-4 py-2 text-violet-600 transition-colors ${
+        className={`flex w-16 justify-center bg-violet-100 py-2 text-violet-600 transition-colors ${
           !isFirst ? 'hover:bg-violet-200' : 'cursor-not-allowed opacity-50'
         }`}
         disabled={isFirst}
         onClick={handlePrevious}
       >
-        <CgArrowLeft className="h-6 w-6" />
+        <CgArrowLeft className="h-7 w-7" />
       </button>
       <button
-        className={`bg-violet-100 px-4 py-2 text-violet-600 transition-colors ${
+        className={`flex w-16 justify-center bg-violet-100 py-2 font-semibold text-violet-600 transition-colors ${
           isPassed ? 'hover:bg-violet-200' : 'cursor-not-allowed opacity-50'
         }`}
         disabled={!isPassed}
         onClick={handleNext}
       >
-        <CgArrowRight className="h-6 w-6" />
+        {isLast ? '종료' : <CgArrowRight className="h-7 w-7" />}
       </button>
     </div>
   );
