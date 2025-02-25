@@ -12,5 +12,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/english-words/:path*', '/writing/:path*'],
+  matcher: ['/', '/english/:path*', '/writing/:path*'],
 };

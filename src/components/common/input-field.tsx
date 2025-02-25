@@ -12,7 +12,7 @@ interface InputFieldProps {
 export default function InputField({ label, type, name, value, onChange }: InputFieldProps) {
   return (
     <div className="flex w-full flex-col">
-      <label className="mb-1.5 text-neutral-500">{label}</label>
+      <label className="text-neutral-600">{label}</label>
       <Input type={type} name={name} value={value} spellCheck={false} onChange={onChange} />
     </div>
   );

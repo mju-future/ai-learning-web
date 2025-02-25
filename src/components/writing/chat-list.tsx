@@ -24,7 +24,7 @@ export default function WritingPracticeChatList({ id, initialData }: WritingPrac
   async function handleSendMessage(content: string) {
     setChats((prev) => [...prev, { id: Date.now(), sender: 'MEMBER', content }]);
     setIsLoading(true);
-    const aiChat = await chat(id, token, content);
+    const aiChat = await chat(id, content, token);
     setIsLoading(false);
     setChats((prev) => [...prev, aiChat]);
   }
@@ -34,6 +34,7 @@ export default function WritingPracticeChatList({ id, initialData }: WritingPrac
       lastMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [chats]);
+
   return (
     <>
       {chats.map(({ id, sender, content }, index) => {
