@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '새 글쓰기',
+};
+
 export default function WritingNewLayout({
   children,
 }: Readonly<{

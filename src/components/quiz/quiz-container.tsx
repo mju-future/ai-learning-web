@@ -35,7 +35,7 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
   const [count, setCount] = useState(0);
   const router = useRouter();
 
-  const { answer, options, explanation } = data[currentIndex];
+  const { question, answer, options, explanation } = data[currentIndex];
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === data.length - 1;
 
@@ -82,9 +82,7 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
   return (
     <section className="mt-20">
       <h2 className="text-xl font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
-      <p className="mt-2.5 text-2xl font-medium">
-        다음 중 &apos;행복한&apos;을 의미하는 영어 단어는 무엇일까요?
-      </p>
+      <p className="mt-2.5 text-2xl font-medium">{question}</p>
       <div className="my-10">
         {options.map((option) => (
           <OptionItem
