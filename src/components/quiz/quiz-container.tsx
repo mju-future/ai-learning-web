@@ -5,6 +5,7 @@ import { Quiz, QuizType } from '@/types';
 import OptionItem from './option-item';
 import QuizNavigation from './quiz-navigation';
 import { useRouter } from 'next/navigation';
+import ShowToast from '../toast/toast';
 
 interface QuizContainerProps {
   type: keyof typeof QuizType;
@@ -63,19 +64,24 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
       setShowExplanation((prev) =>
         prev.map((value, index) => (currentIndex === index ? true : value))
       );
+      ShowToast('정답입니다!', 'success');
       return;
     }
 
     if (count < 1) {
       setCount((prev) => prev + 1);
+      ShowToast('오답입니다! 다시 한 번 시도해보세요!', 'error');
       return;
     }
 
-    setIsPassed((prev) =>
-      prev.map((value, currentIndex) => (currentIndex === currentIndex ? true : value))
-    );
+    setIsPassed((prev) => prev.map((value, index) => (currentIndex === index ? true : value)));
     setShowExplanation((prev) =>
-      prev.map((value, currentIndex) => (currentIndex === currentIndex ? true : value))
+      prev.map((value, index) => (currentIndex === index ? true : value))
+    );
+    ShowToast(
+      `정답은 ${answer}번 입니다! 
+      다시 공부해봐요`,
+      'error'
     );
   }
 
