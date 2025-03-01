@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { setCookie } from 'cookies-next';
 import InputField from '@/components/common/input-field';
 import { login } from '@/api';
 import { LoginData } from '@/types';
@@ -23,7 +24,12 @@ export default function Login() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await login(loginData);
+    const token = await login(loginData);
+    setCookie('ACCESS_TOKEN', token, {
+      maxAge: 60 * 60 * 24,
+      path: '/',
+      secure: true,
+    });
     router.push('/');
     router.refresh();
   }
