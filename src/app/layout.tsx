@@ -5,10 +5,10 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | 미래융합대학 기초 학습',
-    default: '미래융합대학 기초 학습',
+    template: '%s | 미래융합대학 AI 기초학습 지원',
+    default: '미래융합대학 AI 기초학습 지원',
   },
-  description: '명지대학교 미래융합대학 기초 학습',
+  description: '명지대학교 미래융합대학 AI 기초학습 지원 서비스',
 };
 
 const pretendard = localFont({
