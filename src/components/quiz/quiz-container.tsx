@@ -5,7 +5,7 @@ import { Quiz, QuizType } from '@/types';
 import OptionItem from './option-item';
 import QuizNavigation from './quiz-navigation';
 import { useRouter } from 'next/navigation';
-import ShowToast from '../toast/toast';
+import showToast from '../toast/toast';
 
 interface QuizContainerProps {
   type: keyof typeof QuizType;
@@ -64,13 +64,13 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
       setShowExplanation((prev) =>
         prev.map((value, index) => (currentIndex === index ? true : value))
       );
-      ShowToast('정답입니다!', 'success');
+      showToast('정답이에요!', 'success');
       return;
     }
 
     if (count < 1) {
       setCount((prev) => prev + 1);
-      ShowToast('오답입니다! 다시 한 번 시도해보세요!', 'error');
+      showToast('오답이에요! 다시 한번 시도해 보세요.', 'error');
       return;
     }
 
@@ -78,17 +78,13 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
     setShowExplanation((prev) =>
       prev.map((value, index) => (currentIndex === index ? true : value))
     );
-    ShowToast(
-      `정답은 ${answer}번 입니다! 
-      다시 공부해봐요`,
-      'error'
-    );
+    showToast(`정답은 ${answer}번이에요! 다시 공부해봐요.`, 'error');
   }
 
   return (
     <section className="mt-20">
       <h2 className="font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
-      <div className="mt-2.5 font-medium leading-loose">
+      <div className="mt-2.5 leading-loose">
         {question.split('\n').map((line, index) => (
           <p key={index}>{line}</p>
         ))}
