@@ -23,6 +23,7 @@ export async function login(loginData: LoginData): Promise<{ accessToken: string
   if (!response.ok) {
     throw new Error();
   }
+
   const data = await response.json();
   return data.body.accessToken;
 }
@@ -38,6 +39,7 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
   if (!response.ok) {
     throw new Error();
   }
+
   const data = await response.json();
   return data.body;
 }
