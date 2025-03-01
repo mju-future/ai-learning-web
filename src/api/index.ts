@@ -9,7 +9,7 @@ import {
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
 
-export async function login(loginData: LoginData): Promise<void> {
+export async function login(loginData: LoginData): Promise<{ accessToken: string }> {
   const { loginId, password } = loginData;
   const response = await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
@@ -23,6 +23,8 @@ export async function login(loginData: LoginData): Promise<void> {
   if (!response.ok) {
     throw new Error();
   }
+  const data = await response.json();
+  return data.body.accessToken;
 }
 
 export async function fetchWritingPractices(token: string): Promise<WritingPractice[]> {
@@ -36,7 +38,6 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
   if (!response.ok) {
     throw new Error();
   }
-
   const data = await response.json();
   return data.body;
 }
