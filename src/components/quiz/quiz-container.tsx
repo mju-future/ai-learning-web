@@ -5,6 +5,7 @@ import { Quiz, QuizType } from '@/types';
 import OptionItem from './option-item';
 import QuizNavigation from './quiz-navigation';
 import { useRouter } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
 
 interface QuizContainerProps {
   type: keyof typeof QuizType;
@@ -82,8 +83,10 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
   return (
     <section className="mt-20">
       <h2 className="text-xl font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
-      <p className="mt-2.5 text-2xl font-medium">{question}</p>
-      <div className="my-10">
+      <div className="mt-2.5 text-xl font-medium leading-loose">
+        <ReactMarkdown>{question}</ReactMarkdown>
+      </div>
+      <div className="mb-8 mt-6">
         {options.map((option) => (
           <OptionItem
             key={option.number}
