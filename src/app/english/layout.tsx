@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '영어 학습',
+};
+
 export default function EnglishLayout({
   children,
 }: Readonly<{

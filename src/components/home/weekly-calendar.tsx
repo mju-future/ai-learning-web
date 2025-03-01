@@ -47,7 +47,7 @@ function WeeklyCalendar() {
 
   return (
     <section className="mt-10 w-full border p-6 text-base text-neutral-600">
-      <h2 className="text-xl font-semibold text-neutral-800">주간 학습</h2>
+      <h2 className="text-xl font-semibold text-neutral-800">주간 학습(예시)</h2>
       <div className="mt-4">
         <div className="flex items-center justify-between">
           <button
