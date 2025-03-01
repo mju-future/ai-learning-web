@@ -115,6 +115,7 @@ export async function fetchRandomQuizzes(
       Cookie: `ACCESS_TOKEN=${token}`,
     },
     credentials: 'include',
+    cache: 'no-cache',
   });
 
   if (!response.ok) {
