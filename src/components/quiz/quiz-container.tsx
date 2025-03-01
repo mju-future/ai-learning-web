@@ -5,7 +5,6 @@ import { Quiz, QuizType } from '@/types';
 import OptionItem from './option-item';
 import QuizNavigation from './quiz-navigation';
 import { useRouter } from 'next/navigation';
-import ReactMarkdown from 'react-markdown';
 
 interface QuizContainerProps {
   type: keyof typeof QuizType;
@@ -72,21 +71,21 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
       return;
     }
 
-    setIsPassed((prev) =>
-      prev.map((value, currentIndex) => (currentIndex === currentIndex ? true : value))
-    );
+    setIsPassed((prev) => prev.map((value, index) => (currentIndex === index ? true : value)));
     setShowExplanation((prev) =>
-      prev.map((value, currentIndex) => (currentIndex === currentIndex ? true : value))
+      prev.map((value, index) => (currentIndex === index ? true : value))
     );
   }
 
   return (
     <section className="mt-20">
-      <h2 className="text-xl font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
-      <div className="mt-2.5 text-xl font-medium leading-loose">
-        <ReactMarkdown>{question}</ReactMarkdown>
+      <h2 className="font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
+      <div className="mt-2.5 font-medium leading-loose">
+        {question.split('\n').map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
       </div>
-      <div className="mb-8 mt-6">
+      <div className="my-8">
         {options.map((option) => (
           <OptionItem
             key={option.number}
