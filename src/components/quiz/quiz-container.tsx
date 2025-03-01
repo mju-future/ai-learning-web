@@ -87,9 +87,13 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
 
   return (
     <section className="mt-20">
-      <h2 className="text-xl font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
-      <p className="mt-2.5 text-2xl font-medium">{question}</p>
-      <div className="my-10">
+      <h2 className="font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
+      <div className="mt-2.5 font-medium leading-loose">
+        {question.split('\n').map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
+      </div>
+      <div className="my-8">
         {options.map((option) => (
           <OptionItem
             key={option.number}
