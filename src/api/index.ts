@@ -39,7 +39,7 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
   if (!response.ok) {
     throw new Error();
   }
-
+  
   const data = await response.json();
   return data.body;
 }
