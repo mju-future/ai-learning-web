@@ -36,6 +36,7 @@ export default function Login() {
         maxAge: 60 * 60 * 24,
         path: '/',
         secure: true,
+        sameSite: 'none',
       });
       router.push('/');
       router.refresh();
