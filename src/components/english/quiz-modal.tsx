@@ -45,28 +45,26 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
         <h2 className="text-xl font-semibold">{`${QuizType[quizType]} 퀴즈`}</h2>
         <div className="mt-10">
           <label>개수</label>
-          <div className="mt-1.5 flex w-full border">
+          <div className="mt-1.5 flex justify-between border">
+            <button
+              className="px-5 outline-none transition-colors hover:bg-neutral-100"
+              onClick={() => dispatch({ type: 'DECREASE' })}
+            >
+              -
+            </button>
             <input
               type="number"
               readOnly={true}
               onClick={() => {}}
-              className="w-full px-3 py-2 outline-none"
+              className="w-full px-3.5 py-2.5 text-center outline-none"
               value={amount}
             />
-            <div className="flex flex-col bg-neutral-100">
-              <button
-                className="h-full px-5 outline-none transition-colors hover:bg-neutral-200"
-                onClick={() => dispatch({ type: 'INCREASE' })}
-              >
-                +
-              </button>
-              <button
-                className="h-full px-5 outline-none transition-colors hover:bg-neutral-200"
-                onClick={() => dispatch({ type: 'DECREASE' })}
-              >
-                -
-              </button>
-            </div>
+            <button
+              className="px-5 outline-none transition-colors hover:bg-neutral-100"
+              onClick={() => dispatch({ type: 'INCREASE' })}
+            >
+              +
+            </button>
           </div>
         </div>
         <div className="mt-10 flex justify-end gap-2.5 font-semibold">
