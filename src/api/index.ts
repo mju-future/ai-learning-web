@@ -23,7 +23,7 @@ export async function login(loginData: LoginData): Promise<{ accessToken: string
   if (!response.ok) {
     throw new Error();
   }
-  
+
   const data = await response.json();
   return data.body.accessToken;
 }
@@ -50,11 +50,12 @@ export async function askFeedback(token: string, content: string): Promise<AiFee
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Cookie: `ACCESS_TOKEN=${token}`,
+      Authorization: `Bearer ${token}`,
     },
     credentials: 'include',
     body: JSON.stringify({ content }),
   });
+  console.log(response);
 
   if (!response.ok) {
     throw new Error();
