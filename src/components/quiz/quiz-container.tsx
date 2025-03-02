@@ -84,7 +84,7 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
 
   return (
     <section className="mt-20">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <RiRobot2Line className="h-8 w-8 text-violet-600" />
         <h2 className="mt-0.5 text-xl font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
       </div>
