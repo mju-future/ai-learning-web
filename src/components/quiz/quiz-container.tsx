@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useReducer } from 'react';
+import { RiRobot2Line } from 'react-icons/ri';
 import { Quiz, QuizType } from '@/types';
 import OptionItem from './option-item';
 import QuizNavigation from './quiz-navigation';
@@ -83,7 +84,10 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
 
   return (
     <section className="mt-20">
-      <h2 className="font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
+      <div className="flex items-center gap-4">
+        <RiRobot2Line className="h-8 w-8 text-violet-600" />
+        <h2 className="mt-0.5 text-xl font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
+      </div>
       <div className="mt-2.5 leading-loose">
         {question.split('\n').map((line, index) => (
           <p key={index}>{line}</p>
