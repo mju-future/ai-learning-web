@@ -34,6 +34,7 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
     headers: {
       Cookie: `ACCESS_TOKEN=${token}`,
     },
+    credentials: 'include',
   });
 
   if (!response.ok) {
