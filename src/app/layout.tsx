@@ -32,7 +32,12 @@ export default function RootLayout({
         <Header />
         <div className="mb-12 mt-[61px] flex w-full max-w-screen-lg justify-center px-6">
           {children}
-          <ToastContainer position="top-center" autoClose={2000} pauseOnHover={false} />
+          <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            pauseOnHover={false}
+            hideProgressBar={true}
+          />
         </div>
       </body>
     </html>
