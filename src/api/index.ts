@@ -94,7 +94,7 @@ export async function chat(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Cookie: `ACCESS_TOKEN=${token}`,
+      Authorization: `Bearer ${token}`,
     },
     credentials: 'include',
     body: JSON.stringify({ content }),
