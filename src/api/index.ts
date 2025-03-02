@@ -50,9 +50,9 @@ export async function askFeedback(token: string, content: string): Promise<AiFee
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Cookie: `ACCESS_TOKEN=${token}`,
       Authorization: `Bearer ${token}`,
     },
+    credentials: 'include',
     body: JSON.stringify({ content }),
   });
   console.log(response);
