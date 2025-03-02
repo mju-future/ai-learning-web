@@ -23,7 +23,7 @@ export async function login(loginData: LoginData): Promise<{ accessToken: string
   if (!response.ok) {
     throw new Error();
   }
-
+  
   const data = await response.json();
   return data.body.accessToken;
 }
@@ -117,6 +117,7 @@ export async function fetchRandomQuizzes(
       Cookie: `ACCESS_TOKEN=${token}`,
     },
     credentials: 'include',
+    cache: 'no-cache',
   });
 
   if (!response.ok) {

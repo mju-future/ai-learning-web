@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { ToastContainer } from 'react-toastify';
 import Header from '@/components/layout/header';
 import './globals.css';
 
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Header />
         <div className="mb-12 mt-[61px] flex w-full max-w-screen-lg justify-center px-6">
           {children}
+          <ToastContainer position="top-center" autoClose={2000} pauseOnHover={false} />
         </div>
       </body>
     </html>
