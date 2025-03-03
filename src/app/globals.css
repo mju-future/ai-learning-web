@@ -26,3 +26,9 @@ textarea {
   scrollbar-color: #8888 transparent;
   scrollbar-width: auto;
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
