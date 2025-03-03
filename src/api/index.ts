@@ -5,6 +5,7 @@ import {
   QuizType,
   Quiz,
   LoginData,
+  DetailType,
 } from '@/types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
@@ -109,17 +110,21 @@ export async function chat(
 
 export async function fetchRandomQuizzes(
   type: keyof typeof QuizType,
+  detailType: keyof typeof DetailType,
   amount: number,
   token: string
 ): Promise<Quiz[]> {
-  const response = await fetch(`${BASE_URL}/quizzes?type=${type}&amount=${amount}`, {
-    method: 'GET',
-    headers: {
-      Cookie: `ACCESS_TOKEN=${token}`,
-    },
-    credentials: 'include',
-    cache: 'no-cache',
-  });
+  const response = await fetch(
+    `${BASE_URL}/quizzes?type=${type}&detailType=${detailType}&amount=${amount}`,
+    {
+      method: 'GET',
+      headers: {
+        Cookie: `ACCESS_TOKEN=${token}`,
+      },
+      credentials: 'include',
+      cache: 'no-cache',
+    }
+  );
 
   if (!response.ok) {
     throw new Error();
