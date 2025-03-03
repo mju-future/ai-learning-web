@@ -1,14 +1,15 @@
 'use client';
 
-import { QuizType } from '@/types';
-import { useReducer } from 'react';
+import QuizOption from './quiz-option';
+import { QuizType, QuizCategory } from '@/types';
+import { useReducer, useState } from 'react';
 import Modal from 'react-modal';
 
 interface QuizModalProps {
   isOpen: boolean;
   quizType: keyof typeof QuizType;
   onClose: () => void;
-  onSubmit: (amount: number) => void;
+  onSubmit: (amount: number, quizCatrgory: keyof typeof QuizCategory) => void;
 }
 
 interface AmountAction {
@@ -28,9 +29,10 @@ function amountReducer(state: number, action: AmountAction): number {
 
 export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizModalProps) {
   const [amount, dispatch] = useReducer(amountReducer, 10);
+  const [quizCatrgory, setQuizCatrgory] = useState<keyof typeof QuizCategory>('matchMeaning');
 
   const handleSubmit = () => {
-    onSubmit(amount);
+    onSubmit(amount, quizCatrgory);
     onClose();
   };
 
@@ -43,6 +45,10 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
     >
       <div className="mb-10 w-full max-w-xl border bg-white p-8">
         <h2 className="text-xl font-semibold">{`${QuizType[quizType]} 퀴즈`}</h2>
+        <div className="mt-10">
+          <label>문제 유형</label>
+          <QuizOption value={quizCatrgory} onChange={setQuizCatrgory} />
+        </div>
         <div className="mt-10">
           <label>개수</label>
           <div className="mt-1.5 flex w-full border">

@@ -4,15 +4,17 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CgSearch } from 'react-icons/cg';
 import QuizModal from '@/components/english/quiz-modal';
-import { QuizType } from '@/types';
+import { QuizType, QuizCategory } from '@/types';
 
 export default function English() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quizType, setQuizType] = useState<keyof typeof QuizType>('VOCABULARY');
+
   const router = useRouter();
 
   function handleOpenModal(event: React.MouseEvent<HTMLButtonElement>) {
     setQuizType(event.currentTarget.value as keyof typeof QuizType);
+
     setIsModalOpen(true);
   }
 
@@ -20,8 +22,8 @@ export default function English() {
     setIsModalOpen(false);
   }
 
-  function handleSubmit(amount: number) {
-    router.push(`/english/quiz?type=${quizType}&amount=${amount}`);
+  function handleSubmit(amount: number, category: keyof typeof QuizCategory) {
+    router.push(`/english/quiz?type=${quizType}&category=${category}&amount=${amount}`);
   }
 
   return (

@@ -36,3 +36,9 @@ export interface QuizOption {
   number: number;
   value: string;
 }
+
+export const QuizCategory = {
+  matchMeaning: '단어 뜻 맞추기',
+  matchKoreanMeaning: '뜻으로 단어 맞추기',
+  blankQuiz: '빈칸 채우기',
+} as const;
