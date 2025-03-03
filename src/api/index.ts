@@ -55,7 +55,6 @@ export async function askFeedback(token: string, content: string): Promise<AiFee
     credentials: 'include',
     body: JSON.stringify({ content }),
   });
-  console.log(response);
 
   if (!response.ok) {
     throw new Error();
