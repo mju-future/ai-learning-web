@@ -19,7 +19,7 @@ export default function QuizOption({ value, onChange }: QuizOptionProps) {
     <div className="mt-1.5 flex items-center border">
       <select
         ref={selectRef}
-        className="z-10 w-full bg-transparent px-3 py-3 outline-none"
+        className="z-10 w-full bg-transparent px-3.5 py-2.5 outline-none"
         value={value}
         onChange={(e) => onChange(e.target.value as keyof typeof DetailType)}
       >
