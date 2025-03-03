@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useReducer } from 'react';
+import { RiRobot2Line } from 'react-icons/ri';
 import { Quiz, QuizType } from '@/types';
 import OptionItem from './option-item';
 import QuizNavigation from './quiz-navigation';
 import { useRouter } from 'next/navigation';
-import ShowToast from '../toast/toast';
+import showToast from '../toast/toast';
 
 interface QuizContainerProps {
   type: keyof typeof QuizType;
@@ -64,13 +65,13 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
       setShowExplanation((prev) =>
         prev.map((value, index) => (currentIndex === index ? true : value))
       );
-      ShowToast('정답입니다!', 'success');
+      showToast('정답이에요!', 'success');
       return;
     }
 
     if (count < 1) {
       setCount((prev) => prev + 1);
-      ShowToast('오답입니다! 다시 한 번 시도해보세요!', 'error');
+      showToast('오답이에요! 다시 한번 시도해 보세요.', 'error');
       return;
     }
 
@@ -78,18 +79,21 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
     setShowExplanation((prev) =>
       prev.map((value, index) => (currentIndex === index ? true : value))
     );
-    ShowToast(
-      `정답은 ${answer}번 입니다! 
-      다시 공부해봐요`,
-      'error'
-    );
+    showToast(`정답은 ${answer}번이에요! 다시 공부해봐요.`, 'error');
   }
 
   return (
     <section className="mt-20">
-      <h2 className="text-xl font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
-      <p className="mt-2.5 text-2xl font-medium">{question}</p>
-      <div className="my-10">
+      <div className="flex items-center gap-3">
+        <RiRobot2Line className="h-8 w-8 text-violet-600" />
+        <h2 className="mt-0.5 text-xl font-semibold text-violet-600">{`${QuizType[type]} - 문제${currentIndex + 1}`}</h2>
+      </div>
+      <div className="mt-2.5 leading-loose">
+        {question.split('\n').map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
+      </div>
+      <div className="my-8">
         {options.map((option) => (
           <OptionItem
             key={option.number}

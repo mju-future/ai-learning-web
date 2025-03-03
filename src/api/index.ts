@@ -23,6 +23,7 @@ export async function login(loginData: LoginData): Promise<{ accessToken: string
   if (!response.ok) {
     throw new Error();
   }
+
   const data = await response.json();
   return data.body.accessToken;
 }
@@ -33,11 +34,13 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
     headers: {
       Cookie: `ACCESS_TOKEN=${token}`,
     },
+    credentials: 'include',
   });
 
   if (!response.ok) {
     throw new Error();
   }
+
   const data = await response.json();
   return data.body;
 }
@@ -47,11 +50,12 @@ export async function askFeedback(token: string, content: string): Promise<AiFee
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Cookie: `ACCESS_TOKEN=${token}`,
+      Authorization: `Bearer ${token}`,
     },
     credentials: 'include',
     body: JSON.stringify({ content }),
   });
+  console.log(response);
 
   if (!response.ok) {
     throw new Error();
@@ -90,7 +94,7 @@ export async function chat(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Cookie: `ACCESS_TOKEN=${token}`,
+      Authorization: `Bearer ${token}`,
     },
     credentials: 'include',
     body: JSON.stringify({ content }),
@@ -115,6 +119,7 @@ export async function fetchRandomQuizzes(
       Cookie: `ACCESS_TOKEN=${token}`,
     },
     credentials: 'include',
+    cache: 'no-cache',
   });
 
   if (!response.ok) {
