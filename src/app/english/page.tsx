@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CgSearch } from 'react-icons/cg';
 import QuizModal from '@/components/english/quiz-modal';
-import { QuizType, QuizCategory } from '@/types';
+import { QuizType, DetailType } from '@/types';
 
 export default function English() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,8 +22,8 @@ export default function English() {
     setIsModalOpen(false);
   }
 
-  function handleSubmit(amount: number, category: keyof typeof QuizCategory) {
-    router.push(`/english/quiz?type=${quizType}&category=${category}&amount=${amount}`);
+  function handleSubmit(amount: number, detailType: keyof typeof DetailType) {
+    router.push(`/english/quiz?type=${quizType}&detailType=${detailType}&amount=${amount}`);
   }
 
   return (

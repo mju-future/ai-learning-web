@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import FeedbackLoading from '@/components/writing/feedback-loading';
+import showToast from '@/components/toast/toast';
 
 export default function WritingNew() {
   const router = useRouter();
@@ -16,12 +17,17 @@ export default function WritingNew() {
     if (content.length < 50) {
       return;
     }
-
     setIsLoading(true);
     const token = getCookie('ACCESS_TOKEN') as string;
-    const data = await askFeedback(token, content);
-    router.push(`/writing/${data.id}`);
-    setIsLoading(false);
+    try {
+      const data = await askFeedback(token, content);
+      router.push(`/writing/${data.id}`);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      showToast('오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   const isButtonDisabled = isLoading || content.length < 1;
