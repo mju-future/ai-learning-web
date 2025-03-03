@@ -3,7 +3,6 @@ import localFont from 'next/font/local';
 import { ToastContainer } from 'react-toastify';
 import Header from '@/components/layout/header';
 import './globals.css';
-import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
   title: {
