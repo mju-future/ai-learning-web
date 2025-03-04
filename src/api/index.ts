@@ -6,6 +6,7 @@ import {
   Quiz,
   LoginData,
   DetailType,
+  WordInfo,
 } from '@/types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
@@ -125,6 +126,24 @@ export async function fetchRandomQuizzes(
       cache: 'no-cache',
     }
   );
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  const data = await response.json();
+
+  return data.body;
+}
+
+export async function fetchWordsInfo(word: string, token: string): Promise<WordInfo[]> {
+  const response = await fetch(`/api/english?word=${word}`, {
+    method: 'GET',
+    headers: {
+      Cookie: `ACCESS_TOKEN=${token}`,
+    },
+    credentials: 'include',
+  });
 
   if (!response.ok) {
     throw new Error();

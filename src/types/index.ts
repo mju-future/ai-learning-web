@@ -42,3 +42,20 @@ export const DetailType = {
   WORD: '뜻으로 단어 맞추기',
   FILL_IN: '빈칸 채우기',
 } as const;
+
+export interface WordInfo {
+  word: string;
+  partOfSpeech: string;
+  definition: Definition[];
+  example: Example[];
+}
+
+export interface Definition {
+  english: string;
+  korean: string;
+}
+
+export interface Example {
+  english: string;
+  korean: string;
+}
