@@ -6,6 +6,7 @@ import {
   Quiz,
   LoginData,
   DetailType,
+  QuizResult,
 } from '@/types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
@@ -132,5 +133,24 @@ export async function fetchRandomQuizzes(
 
   const data = await response.json();
 
+  return data.body;
+}
+
+export async function completeQuiz(quizResults: QuizResult[], token: string): Promise<number[]> {
+  const response = await fetch(`${BASE_URL}/quizzes/complete`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: 'include',
+    body: JSON.stringify({ quizResults }),
+  });
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  const data = await response.json();
   return data.body;
 }
