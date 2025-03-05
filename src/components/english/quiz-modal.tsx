@@ -59,9 +59,7 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
               -
             </button>
             <input
-              type="number"
               readOnly={true}
-              onClick={() => {}}
               className="w-full px-3.5 py-2.5 text-center outline-none"
               value={amount}
             />
