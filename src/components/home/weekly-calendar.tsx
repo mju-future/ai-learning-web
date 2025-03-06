@@ -87,8 +87,8 @@ function WeeklyCalendar() {
 
   return (
     <section className="mt-10 w-full border p-6 text-base text-neutral-600">
-      <h2 className="text-xl font-semibold text-neutral-800">주간 학습(예시)</h2>
-      <div className="mt-4">
+      <h2 className="text-xl font-semibold text-neutral-800">주간 학습</h2>
+      <div className="mt-5">
         <div className="flex items-center justify-between">
           <button
             onClick={() => navigateWeek(-1)}
@@ -107,7 +107,7 @@ function WeeklyCalendar() {
           </button>
         </div>
       </div>
-      <div className="mt-4 grid grid-cols-7 gap-3">
+      <div className="mt-5 grid grid-cols-7 gap-3">
         {['일', '월', '화', '수', '목', '금', '토'].map((day, index) => (
           <div
             key={day}
@@ -126,13 +126,13 @@ function WeeklyCalendar() {
           return (
             <div
               key={dateString}
-              className={`flex flex-col items-center border py-3 ${hasStudied ? 'bg-green-100' : 'bg-slate-50'} ${index === 0 && 'text-red-500'} ${index === 6 && 'text-blue-500'}`}
+              className={`flex flex-col items-center gap-2 border py-3 ${hasStudied ? 'bg-green-100' : 'bg-slate-50'} ${index === 0 && 'text-red-500'} ${index === 6 && 'text-blue-500'}`}
             >
-              <div className="text-base">{date.getDate()}</div>
-              <div className="mt-2 h-10 w-10">
+              <div className="text-base">{date.getDate()}일</div>
+              <div className="h-10 w-10">
                 {hasStudied && <CgCheck className="h-full w-full text-green-500" />}
               </div>
-              <div className="text-center text-black">{hasStudied && `${quizCount}`}</div>
+              <div className="text-center text-black">{hasStudied && `${quizCount}문제 학습`}</div>
             </div>
           );
         })}

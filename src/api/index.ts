@@ -156,7 +156,7 @@ export async function fetchWordsInfo(keyword: string, token: string): Promise<Wo
 }
 
 export async function recordQuiz(token: string): Promise<DailyQuiz[]> {
-  const response = await fetch(`${BASE_URL}/api/quizzes/count`, {
+  const response = await fetch(`${BASE_URL}/quizzes/count`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
