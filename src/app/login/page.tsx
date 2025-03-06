@@ -33,7 +33,7 @@ export default function Login() {
     try {
       const token = await login(loginData);
       setCookie('ACCESS_TOKEN', token, {
-        maxAge: 60 * 60 * 24,
+        maxAge: 60 * 60 * 24 * 30,
         path: '/',
         secure: true,
         sameSite: 'none',

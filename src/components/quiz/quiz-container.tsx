@@ -7,6 +7,8 @@ import OptionItem from './option-item';
 import QuizNavigation from './quiz-navigation';
 import { useRouter } from 'next/navigation';
 import showToast from '../toast/toast';
+import { completeQuiz } from '@/api';
+import { getCookie } from 'cookies-next';
 
 interface QuizContainerProps {
   type: keyof typeof QuizType;
@@ -30,6 +32,7 @@ function reducer(state: number, action: Action): number {
 }
 
 export default function QuizContainer({ type, data }: QuizContainerProps) {
+  const token = getCookie('ACCESS_TOKEN') as string;
   const [currentIndex, dispatch] = useReducer(reducer, 0);
   const [isPassed, setIsPassed] = useState(Array(data.length).fill(false));
   const [selectedNumber, setSelectedNumber] = useState<number[]>(Array(data.length).fill(null));
@@ -45,8 +48,14 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
     dispatch({ type: 'PREVIOUS', length: data.length });
   }
 
-  function handleNext() {
+  async function handleNext() {
     if (isLast) {
+      const quizResults = data.map((quiz, index) => ({
+        id: quiz.id,
+        isCorrect: isPassed[index],
+      }));
+      await completeQuiz(quizResults, token);
+      showToast('퀴즈를 완료 했어요!', 'success');
       router.push('/english');
     }
 
@@ -113,7 +122,7 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
         handleNext={handleNext}
       />
       {showExplanation[currentIndex] && (
-        <section className="mt-10 border p-6">
+        <section className="mt-10 rounded-3xl border p-8">
           <h2 className="text-xl font-semibold">해설</h2>
           <div className="mt-5">{explanation}</div>
         </section>
