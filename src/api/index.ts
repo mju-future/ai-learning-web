@@ -143,7 +143,7 @@ export async function fetchWordsInfo(keyword: string, token: string): Promise<Wo
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    credentials: 'include', // 필요 없으면 제거
+    credentials: 'include',
   });
   if (!response.ok) {
     throw new Error();
