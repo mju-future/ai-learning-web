@@ -49,3 +49,8 @@ export interface WordInfo {
   definition: { english: string; korean: string }[];
   examples: { english: string; korean: string }[];
 }
+
+export interface DailyQuiz {
+  count: number;
+  date: string;
+}

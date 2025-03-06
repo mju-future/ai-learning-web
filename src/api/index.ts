@@ -7,6 +7,7 @@ import {
   LoginData,
   DetailType,
   WordInfo,
+  DailyQuiz,
 } from '@/types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
@@ -151,5 +152,23 @@ export async function fetchWordsInfo(keyword: string, token: string): Promise<Wo
 
   const data = await response.json();
 
+  return data.body;
+}
+
+export async function recordQuiz(token: string): Promise<DailyQuiz[]> {
+  const response = await fetch(`${BASE_URL}/api/quizzes/count`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch quiz counts');
+  }
+
+  const data = await response.json();
   return data.body;
 }

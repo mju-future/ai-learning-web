@@ -1,19 +1,59 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CgChevronLeft, CgChevronRight, CgCheck } from 'react-icons/cg';
+import { recordQuiz } from '@/api';
+import { DailyQuiz } from '@/types';
 
-const studyData: Record<string, boolean> = {
-  '2025-02-12': true,
-  '2025-02-13': true,
-  '2025-02-14': false,
-  '2025-02-16': false,
-  '2025-02-17': true,
-  '2025-02-18': false,
-};
+function getTokenFromCookie(): string | null {
+  const cookies = document.cookie.split(';');
+  const tokenCookie = cookies.find((cookie) => cookie.trim().startsWith('ACCESS_TOKEN='));
+
+  if (tokenCookie) {
+    return tokenCookie.trim().substring('ACCESS_TOKEN='.length);
+  }
+
+  return null;
+}
 
 function WeeklyCalendar() {
   const [currentWeek, setCurrentWeek] = useState<Date>(new Date());
+  const [quizData, setQuizData] = useState<Record<string, number>>({});
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const cookieToken = getTokenFromCookie();
+    if (cookieToken) {
+      setToken(cookieToken);
+      console.log('쿠키에서 토큰을 가져왔습니다:', cookieToken.substring(0, 10) + '...');
+    } else {
+      console.log('쿠키에 토큰이 없습니다.');
+    }
+  }, []);
+
+  useEffect(() => {
+    async function fetchQuizData() {
+      if (!token) {
+        console.log('토큰이 없습니다.');
+        return;
+      }
+
+      try {
+        const response = await recordQuiz(token);
+        const newQuizData: Record<string, number> = {};
+
+        response.forEach((quiz: DailyQuiz) => {
+          newQuizData[quiz.date] = quiz.count;
+        });
+
+        setQuizData(newQuizData);
+      } catch (error) {
+        console.error('퀴즈 데이터 가져오기 실패:', error);
+      }
+    }
+
+    fetchQuizData();
+  }, [currentWeek, token]);
 
   function getMonday(date: Date): Date {
     const d = new Date(date);
@@ -80,7 +120,8 @@ function WeeklyCalendar() {
         ))}
         {weekDates.map((date, index) => {
           const dateString = formatDate(date);
-          const hasStudied = studyData[dateString];
+          const quizCount = quizData[dateString] || 0;
+          const hasStudied = quizCount > 0;
 
           return (
             <div
@@ -91,6 +132,7 @@ function WeeklyCalendar() {
               <div className="mt-2 h-10 w-10">
                 {hasStudied && <CgCheck className="h-full w-full text-green-500" />}
               </div>
+              <div className="text-center text-black">{hasStudied && `${quizCount}`}</div>
             </div>
           );
         })}
