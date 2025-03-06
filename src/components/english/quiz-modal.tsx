@@ -45,11 +45,13 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
     >
       <div className="mb-10 w-full max-w-xl border bg-white p-8">
         <h2 className="text-xl font-semibold">{`${QuizType[quizType]} 퀴즈`}</h2>
-        <div className="mt-10">
-          <label>문제 유형</label>
-          <QuizOption value={detailType} onChange={setDetailType} />
-        </div>
-        <div className="mt-4">
+        {quizType === 'VOCABULARY' && (
+          <div className="mt-10">
+            <label>문제 유형</label>
+            <QuizOption value={detailType} onChange={setDetailType} />
+          </div>
+        )}
+        <div className={`${quizType === 'VOCABULARY' ? 'mt-4' : 'mt-10'}`}>
           <label>개수</label>
           <div className="mt-1.5 flex justify-between border">
             <button
