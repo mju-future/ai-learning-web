@@ -25,7 +25,7 @@ export const QuizType = {
 } as const;
 
 export interface Quiz {
-  id: string;
+  id: number;
   question: string;
   answer: number;
   options: QuizOption[];
@@ -42,3 +42,15 @@ export const DetailType = {
   WORD: '뜻으로 단어 맞추기',
   FILL_IN: '빈칸 채우기',
 } as const;
+
+export interface WordInfo {
+  word: string;
+  partOfSpeech: string;
+  definition: { english: string; korean: string }[];
+  examples: { english: string; korean: string }[];
+}
+
+export interface QuizResult {
+  id: number;
+  isCorrect: boolean;
+}
