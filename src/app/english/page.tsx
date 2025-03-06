@@ -67,7 +67,11 @@ export default function English() {
   }
 
   function handleSubmit(amount: number, detailType: keyof typeof DetailType) {
-    router.push(`/english/quiz?type=${quizType}&detailType=${detailType}&amount=${amount}`);
+    if (quizType === 'VOCABULARY') {
+      router.push(`/english/quiz?type=${quizType}&detailType=${detailType}&amount=${amount}`);
+    } else {
+      router.push(`/english/quiz?type=${quizType}&detailType=NONE&amount=${amount}`);
+    }
   }
 
   return (

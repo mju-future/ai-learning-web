@@ -25,7 +25,7 @@ export const QuizType = {
 } as const;
 
 export interface Quiz {
-  id: string;
+  id: number;
   question: string;
   answer: number;
   options: QuizOption[];
@@ -48,4 +48,9 @@ export interface WordInfo {
   partOfSpeech: string;
   definition: { english: string; korean: string }[];
   examples: { english: string; korean: string }[];
+}
+
+export interface QuizResult {
+  id: number;
+  isCorrect: boolean;
 }
