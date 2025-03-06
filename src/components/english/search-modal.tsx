@@ -27,26 +27,39 @@ export default function SearchModal({ isOpen, onClose, wordInfo }: SearchModalPr
           </button>
           {wordInfo ? (
             <div>
-              <h2>단어 : {wordInfo.word}</h2>
+              <h2 className="text-lg font-bold">단어 : {wordInfo.word}</h2>
               <p>품사 : {wordInfo.partOfSpeech}</p>
-              {wordInfo.definition.map((definition, index) => (
-                <div key={index}>
-                  <p>영어 : {definition.english}</p>
-                  <p>한글 : {definition.korean}</p>
-                </div>
-              ))}
-              <div>
-                <h3>예문 : </h3>
-                {wordInfo.example.map((example, index) => (
-                  <div key={index}>
-                    <p>영어 : {example.english}</p>
-                    <p>한글 : {example.korean}</p>
-                  </div>
-                ))}
+              <div className="mt-4">
+                <h3 className="font-semibold">정의 :</h3>
+                {wordInfo.definition && wordInfo.definition.length > 0 ? (
+                  wordInfo.definition.map((definition, index) => (
+                    <div key={index} className="mb-2">
+                      <p>영어 : {definition.english}</p>
+                      <p>한글 : {definition.korean}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>정의가 없습니다.</p>
+                )}
+              </div>
+              <div className="mt-4">
+                <h3 className="font-semibold">예문 :</h3>
+                {wordInfo.examples && wordInfo.examples.length > 0 ? (
+                  wordInfo.examples.map((examples, index) => (
+                    <div key={index} className="mb-2">
+                      <p>영어 : {examples.english}</p>
+                      <p>한글 : {examples.korean}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>예문이 없습니다.</p>
+                )}
               </div>
             </div>
           ) : (
-            <p>단어 정보를 입력해 주세요!</p>
+            <div>
+              <p className="text-red-500">단어 정보를 불러올 수 없습니다. 다시 시도해 주세요!</p>
+            </div>
           )}
         </div>
       </div>

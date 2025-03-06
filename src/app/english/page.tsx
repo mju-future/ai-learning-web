@@ -35,24 +35,34 @@ export default function English() {
 
   async function handelSeachWord() {
     if (!word.trim() || isKorean(word)) {
-      return alert('영어 단어만 입력해 주세요!');
+      alert('영어 단어만 입력해 주세요!');
+      return;
     }
     try {
-      const token = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('ACCESS_TOKEN='))
-        ?.split('=')[1];
-
+      const token =
+        document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('ACCESS_TOKEN='))
+          ?.split('=')[1] || null;
       if (!token) {
         console.error('토큰이 없습니다.');
+        alert('로그인이 필요합니다.');
         return;
       }
+
       const data = await fetchWordsInfo(word, token);
-      setWordInfo(data[0]);
+
+      if (!data) {
+        console.error('검색된 단어가 없습니다.');
+        alert('해당 단어를 찾을 수 없습니다.');
+        return;
+      }
+
+      setWordInfo(data);
       setIsSearchModalOpen(true);
     } catch (error) {
-      console.log(error);
-      return <div>단어를 가져오는데 실패했습니다.</div>;
+      console.error('단어 검색 실패:', error);
+      alert('단어를 가져오는데 실패했습니다.');
     }
   }
 

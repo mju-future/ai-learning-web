@@ -46,16 +46,6 @@ export const DetailType = {
 export interface WordInfo {
   word: string;
   partOfSpeech: string;
-  definition: Definition[];
-  example: Example[];
-}
-
-export interface Definition {
-  english: string;
-  korean: string;
-}
-
-export interface Example {
-  english: string;
-  korean: string;
+  definition: { english: string; korean: string }[];
+  examples: { english: string; korean: string }[];
 }

@@ -136,15 +136,15 @@ export async function fetchRandomQuizzes(
   return data.body;
 }
 
-export async function fetchWordsInfo(word: string, token: string): Promise<WordInfo[]> {
-  const response = await fetch(`/api/english?word=${word}`, {
+export async function fetchWordsInfo(keyword: string, token: string): Promise<WordInfo> {
+  const response = await fetch(`${BASE_URL}/vocabulary?keyword=${keyword}`, {
     method: 'GET',
     headers: {
-      Cookie: `ACCESS_TOKEN=${token}`,
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
     },
-    credentials: 'include',
+    credentials: 'include', // 필요 없으면 제거
   });
-
   if (!response.ok) {
     throw new Error();
   }
