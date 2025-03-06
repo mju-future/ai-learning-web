@@ -50,6 +50,11 @@ export interface WordInfo {
   examples: { english: string; korean: string }[];
 }
 
+export interface DailyQuiz {
+  count: number;
+  date: string;
+}
+
 export interface QuizResult {
   id: number;
   isCorrect: boolean;

@@ -7,6 +7,7 @@ import {
   LoginData,
   DetailType,
   WordInfo,
+  DailyQuiz,
   QuizResult,
 } from '@/types';
 
@@ -151,9 +152,32 @@ export async function fetchWordsInfo(keyword: string, token: string): Promise<Wo
     },
     credentials: 'include',
   });
+  
+  if (!response.ok) {
+    throw new Error();
+  }
 
   const data = await response.json();
 
+  return data.body;
+}
+
+export async function recordQuiz(token: string): Promise<DailyQuiz[]> {
+  const response = await fetch(`${BASE_URL}/quizzes/count`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch quiz counts');
+  }
+
+  const data = await response.json();
+ 
   return data.body;
 }
 
