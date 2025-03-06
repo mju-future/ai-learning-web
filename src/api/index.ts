@@ -28,7 +28,7 @@ export async function login(loginData: LoginData): Promise<{ accessToken: string
   }
 
   const data = await response.json();
-  
+
   return data.body.accessToken;
 }
 
@@ -46,7 +46,7 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
   }
 
   const data = await response.json();
-  
+
   return data.body;
 }
 
@@ -66,7 +66,7 @@ export async function askFeedback(token: string, content: string): Promise<AiFee
   }
 
   const data = await response.json();
-  
+
   return data.body;
 }
 
@@ -87,7 +87,7 @@ export async function fetchWritingPracticeChats(
   }
 
   const data = await response.json();
-  
+
   return data.body;
 }
 
@@ -111,7 +111,7 @@ export async function chat(
   }
 
   const data = await response.json();
-  
+
   return data.body;
 }
 
@@ -151,7 +151,12 @@ export async function fetchWordsInfo(keyword: string, token: string): Promise<Wo
     },
     credentials: 'include',
   });
-  
+
+  const data = await response.json();
+
+  return data.body;
+}
+
 export async function completeQuiz(quizResults: QuizResult[], token: string): Promise<number[]> {
   const response = await fetch(`${BASE_URL}/quizzes/complete`, {
     method: 'POST',

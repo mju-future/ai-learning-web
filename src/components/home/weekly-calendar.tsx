@@ -46,7 +46,7 @@ function WeeklyCalendar() {
   const weekDates = getWeekDates(currentWeek);
 
   return (
-    <section className="mt-10 w-full border p-6 text-base text-neutral-600">
+    <section className="mt-10 w-full rounded-3xl border p-8 text-base text-neutral-600">
       <h2 className="text-xl font-semibold text-neutral-800">주간 학습(예시)</h2>
       <div className="mt-4">
         <div className="flex items-center justify-between">

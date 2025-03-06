@@ -43,7 +43,7 @@ export default function QuizModal({ isOpen, quizType, onClose, onSubmit }: QuizM
       onRequestClose={onClose}
       ariaHideApp={false}
     >
-      <div className="mb-10 w-full max-w-xl border bg-white p-8">
+      <div className="mb-10 w-full max-w-xl rounded-3xl border bg-white p-8">
         <h2 className="text-xl font-semibold">{`${QuizType[quizType]} 퀴즈`}</h2>
         {quizType === 'VOCABULARY' && (
           <div className="mt-10">

@@ -122,7 +122,7 @@ export default function QuizContainer({ type, data }: QuizContainerProps) {
         handleNext={handleNext}
       />
       {showExplanation[currentIndex] && (
-        <section className="mt-10 border p-6">
+        <section className="mt-10 rounded-3xl border p-8">
           <h2 className="text-xl font-semibold">해설</h2>
           <div className="mt-5">{explanation}</div>
         </section>
