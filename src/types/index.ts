@@ -43,6 +43,13 @@ export const DetailType = {
   FILL_IN: '빈칸 채우기',
 } as const;
 
+export interface WordInfo {
+  word: string;
+  partOfSpeech: string;
+  definition: { english: string; korean: string }[];
+  examples: { english: string; korean: string }[];
+}
+
 export interface QuizResult {
   id: number;
   isCorrect: boolean;

@@ -4,11 +4,16 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CgSearch } from 'react-icons/cg';
 import QuizModal from '@/components/english/quiz-modal';
-import { QuizType, DetailType } from '@/types';
+import SearchModal from '@/components/english/search-modal';
+import { QuizType, DetailType, WordInfo } from '@/types';
+import { fetchWordsInfo } from '@/api';
 
 export default function English() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [quizType, setQuizType] = useState<keyof typeof QuizType>('VOCABULARY');
+  const [wordInfo, setWordInfo] = useState<WordInfo | null>(null);
+  const [word, setWord] = useState('');
 
   const router = useRouter();
 
@@ -20,6 +25,45 @@ export default function English() {
 
   function handleCloseModal() {
     setIsModalOpen(false);
+  }
+
+  function handelCloseSearchModal() {
+    setIsSearchModalOpen(false);
+  }
+
+  const isKorean = (str: string) => /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(str);
+
+  async function handelSeachWord() {
+    if (!word.trim() || isKorean(word)) {
+      alert('영어 단어만 입력해 주세요!');
+      return;
+    }
+    try {
+      const token =
+        document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('ACCESS_TOKEN='))
+          ?.split('=')[1] || null;
+      if (!token) {
+        console.error('토큰이 없습니다.');
+        alert('로그인이 필요합니다.');
+        return;
+      }
+
+      const data = await fetchWordsInfo(word, token);
+
+      if (!data) {
+        console.error('검색된 단어가 없습니다.');
+        alert('해당 단어를 찾을 수 없습니다.');
+        return;
+      }
+
+      setWordInfo(data);
+      setIsSearchModalOpen(true);
+    } catch (error) {
+      console.error('단어 검색 실패:', error);
+      alert('단어를 가져오는데 실패했습니다.');
+    }
   }
 
   function handleSubmit(amount: number, detailType: keyof typeof DetailType) {
@@ -44,8 +88,10 @@ export default function English() {
               autoCapitalize="off"
               autoCorrect="off"
               placeholder="모르는 단어를 입력해 주세요"
+              value={word}
+              onChange={(e) => setWord(e.target.value)}
             />
-            <button className="px-3 transition-opacity hover:opacity-50">
+            <button className="px-3 transition-opacity hover:opacity-50" onClick={handelSeachWord}>
               <CgSearch className="h-6 w-6 opacity-60 drop-shadow-sm" />
             </button>
           </div>
@@ -75,6 +121,11 @@ export default function English() {
         quizType={quizType}
         onClose={handleCloseModal}
         onSubmit={handleSubmit}
+      />
+      <SearchModal
+        isOpen={isSearchModalOpen}
+        onClose={handelCloseSearchModal}
+        wordInfo={wordInfo}
       />
     </>
   );
