@@ -28,6 +28,7 @@ export async function login(loginData: LoginData): Promise<{ accessToken: string
   }
 
   const data = await response.json();
+
   return data.body.accessToken;
 }
 
@@ -43,8 +44,9 @@ export async function fetchWritingPractices(token: string): Promise<WritingPract
   if (!response.ok) {
     throw new Error();
   }
-
+  
   const data = await response.json();
+
   return data.body;
 }
 
@@ -64,6 +66,7 @@ export async function askFeedback(token: string, content: string): Promise<AiFee
   }
 
   const data = await response.json();
+
   return data.body;
 }
 
@@ -84,6 +87,7 @@ export async function fetchWritingPracticeChats(
   }
 
   const data = await response.json();
+
   return data.body;
 }
 
@@ -107,6 +111,7 @@ export async function chat(
   }
 
   const data = await response.json();
+
   return data.body;
 }
 
@@ -170,5 +175,28 @@ export async function recordQuiz(token: string): Promise<DailyQuiz[]> {
   }
 
   const data = await response.json();
+
+ 
+  return data.body;
+}
+
+export async function completeQuiz(quizResults: QuizResult[], token: string): Promise<number[]> {
+  const response = await fetch(`${BASE_URL}/quizzes/complete`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: 'include',
+    body: JSON.stringify({ quizResults }),
+  });
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  const data = await response.json();
+
+  
   return data.body;
 }

@@ -25,7 +25,7 @@ export const QuizType = {
 } as const;
 
 export interface Quiz {
-  id: string;
+  id: number;
   question: string;
   answer: number;
   options: QuizOption[];
@@ -53,4 +53,10 @@ export interface WordInfo {
 export interface DailyQuiz {
   count: number;
   date: string;
+}
+
+
+export interface QuizResult {
+  id: number;
+  isCorrect: boolean;
 }

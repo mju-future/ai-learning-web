@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { getCookie } from 'cookies-next';
 import { CgSearch } from 'react-icons/cg';
 import QuizModal from '@/components/english/quiz-modal';
 import SearchModal from '@/components/english/search-modal';
@@ -14,6 +15,8 @@ export default function English() {
   const [quizType, setQuizType] = useState<keyof typeof QuizType>('VOCABULARY');
   const [wordInfo, setWordInfo] = useState<WordInfo | null>(null);
   const [word, setWord] = useState('');
+  const token = getCookie('ACCESS_TOKEN') as string;
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
@@ -33,23 +36,15 @@ export default function English() {
 
   const isKorean = (str: string) => /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(str);
 
-  async function handelSeachWord() {
+  async function handelSearchWord() {
+
     if (!word.trim() || isKorean(word)) {
       alert('영어 단어만 입력해 주세요!');
       return;
     }
     try {
-      const token =
-        document.cookie
-          .split('; ')
-          .find((row) => row.startsWith('ACCESS_TOKEN='))
-          ?.split('=')[1] || null;
-      if (!token) {
-        console.error('토큰이 없습니다.');
-        alert('로그인이 필요합니다.');
-        return;
-      }
 
+      setIsLoading(true);
       const data = await fetchWordsInfo(word, token);
 
       if (!data) {
@@ -60,6 +55,7 @@ export default function English() {
 
       setWordInfo(data);
       setIsSearchModalOpen(true);
+      setIsLoading(false);
     } catch (error) {
       console.error('단어 검색 실패:', error);
       alert('단어를 가져오는데 실패했습니다.');
@@ -67,7 +63,11 @@ export default function English() {
   }
 
   function handleSubmit(amount: number, detailType: keyof typeof DetailType) {
-    router.push(`/english/quiz?type=${quizType}&detailType=${detailType}&amount=${amount}`);
+    if (quizType === 'VOCABULARY') {
+      router.push(`/english/quiz?type=${quizType}&detailType=${detailType}&amount=${amount}`);
+    } else {
+      router.push(`/english/quiz?type=${quizType}&detailType=NONE&amount=${amount}`);
+    }
   }
 
   return (
@@ -75,7 +75,7 @@ export default function English() {
       <h1 className="mt-12 text-3xl font-bold">영어 학습하기</h1>
       <p className="mt-4 text-neutral-600">AI와 함께 영어 어휘와 문법을 학습해요</p>
       <div className="mt-10 flex w-full flex-col gap-5">
-        <div className="w-full border p-6">
+        <div className="w-full rounded-3xl border p-8">
           <h2 className="text-xl font-semibold">AI 단어 검색</h2>
           <div className="mt-5 flex items-center border">
             <input
@@ -87,12 +87,12 @@ export default function English() {
               value={word}
               onChange={(e) => setWord(e.target.value)}
             />
-            <button className="px-3 transition-opacity hover:opacity-50" onClick={handelSeachWord}>
+            <button className="px-3 transition-opacity hover:opacity-50" onClick={handelSearchWord}>
               <CgSearch className="h-6 w-6 opacity-60 drop-shadow-sm" />
             </button>
           </div>
         </div>
-        <div className="w-full border p-6 font-semibold">
+        <div className="w-full rounded-3xl border p-8 font-semibold">
           <h2 className="text-xl">퀴즈</h2>
           <div className="mt-5 flex gap-4">
             <button
@@ -123,6 +123,20 @@ export default function English() {
         onClose={handelCloseSearchModal}
         wordInfo={wordInfo}
       />
+      {isLoading && <FeedbackLoading />}
     </>
+  );
+}
+
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+function FeedbackLoading() {
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-neutral-600 bg-opacity-10">
+      <div className="mb-20 rounded-3xl border bg-white px-16 py-12">
+        <DotLottieReact src="/loading.lottie" loop autoplay className="mx-auto mb-8 w-[91.2px]" />
+        <div className="text-xl font-semibold text-violet-600">AI가 단어를 검색 중이에요</div>
+      </div>
+    </div>
   );
 }
