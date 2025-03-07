@@ -165,10 +165,7 @@ export async function recordQuiz(token: string): Promise<DailyQuiz[]> {
     credentials: 'include',
   });
 
-  console.log('토큰', token);
-
   if (!response.ok) {
-    console.log(response);
     throw new Error('Failed to fetch quiz counts');
   }
 
