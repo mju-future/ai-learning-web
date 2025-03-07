@@ -55,6 +55,7 @@ export interface DailyQuiz {
   date: string;
 }
 
+
 export interface QuizResult {
   id: number;
   isCorrect: boolean;

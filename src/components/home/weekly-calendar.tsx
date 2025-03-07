@@ -131,6 +131,7 @@ function WeeklyCalendar() {
               <div className="text-base">{date.getDate()}일</div>
               <div className="h-10 w-10">
                 {hasStudied && <CgCheck className="h-full w-full text-green-500" />}
+                <p className="font-medium text-black">{hasStudied && `${quizCount}`}</p>
               </div>
               <div className="text-center text-black">{hasStudied && `${quizCount}문제 학습`}</div>
             </div>

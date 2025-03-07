@@ -16,6 +16,7 @@ export default function SearchModal({ isOpen, onClose, wordInfo }: SearchModalPr
       onRequestClose={onClose}
       ariaHideApp={false}
     >
+
       <div className="flex w-full max-w-xl flex-col rounded-3xl border bg-white p-8">
         <h2 className="text-xl font-semibold">AI 단어 검색 결과</h2>
         <div className="mt-8 flex gap-2.5">

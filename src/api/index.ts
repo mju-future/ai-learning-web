@@ -8,7 +8,6 @@ import {
   DetailType,
   WordInfo,
   DailyQuiz,
-  QuizResult,
 } from '@/types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
@@ -152,7 +151,6 @@ export async function fetchWordsInfo(keyword: string, token: string): Promise<Wo
     },
     credentials: 'include',
   });
-  
   if (!response.ok) {
     throw new Error();
   }
@@ -177,6 +175,7 @@ export async function recordQuiz(token: string): Promise<DailyQuiz[]> {
   }
 
   const data = await response.json();
+
  
   return data.body;
 }
@@ -198,5 +197,6 @@ export async function completeQuiz(quizResults: QuizResult[], token: string): Pr
 
   const data = await response.json();
 
+  
   return data.body;
 }

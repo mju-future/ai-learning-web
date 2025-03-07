@@ -37,11 +37,13 @@ export default function English() {
   const isKorean = (str: string) => /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(str);
 
   async function handelSearchWord() {
+
     if (!word.trim() || isKorean(word)) {
       alert('영어 단어만 입력해 주세요!');
       return;
     }
     try {
+
       setIsLoading(true);
       const data = await fetchWordsInfo(word, token);
 
